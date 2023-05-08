@@ -38,15 +38,15 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.resolve(__dirname, "./client/build")));
+// app.use(express.static(path.resolve(__dirname, "./client/build")));
 
 app.use("/", indexRouter);
 app.use("/api/users", usersRouter);
 app.use("/api/posts", postsRouter);
 
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
-});
+// app.get("*", (req, res) => {
+//   res.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
+// });
 
 // Checks username and password
 passport.use(
