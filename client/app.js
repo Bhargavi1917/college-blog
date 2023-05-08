@@ -8,18 +8,24 @@ const extractJWT = require("passport-jwt").ExtractJwt;
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const cors = require("cors");
-const __dirname=path.dirname("");
-const buildPath=path.join(__dirname,"../client/build")
-app.use(express.static(buildPath))
-app.get("/*",function(req,res){
-  res.sendFile(path.join(__dirname,"../client/build/index.html"),
-  function(err){
-    if (err){
+const _dirname = path.dirname("")
+const buildPath = path.join(_dirname  , "../client/build");
 
-      res.status(500).send(err);
-    }
-  })
+app.use(express.static(buildPath))
+
+app.get("/*", function(req, res){
+
+    res.sendFile(
+        path.join(__dirname, "../client/build/index.html"),
+        function (err) {
+          if (err) {
+            res.status(500).send(err);
+          }
+        }
+      );
+
 })
+
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 const postsRouter = require("./routes/posts");
@@ -125,3 +131,4 @@ app.use(function (err, req, res, next) {
 });
 
 module.exports = app;
+server.listen(5001 , () => console.log('Listening to port 5001'))
